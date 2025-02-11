@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Boot Cards</title>
+    <link rel="stylesheet" href="./bootstrap.min.css">
+    <style>
+        #PrimeiraOpcao {
+            background-image: url('./novayork.jpg');
+            background-color: green;
+            border-color: green;
+        }
+        #SegundaOpcao {
+            background-image: url('./fundoSuica.jpg');
+            background-color: rgb(84, 49, 49);
+            border-color: rgb(84, 49, 49);
+        }
+        #TerceiraOpcao {
+            background-image: url('./fundoItalia.jpg');
+            border-color: orange;
+        }
+        
+        #Titulo {
+            display: flex;
+            justify-content: center;
+            align-items: center; 
+            height: 100px;
+            text-align: center; 
+        }
+        .card {
+    display: flex;
+    height: 540px;  
+    overflow: hidden; 
+    position: relative; 
+    box-shadow: 28px 28px 50px rgba(0, 0, 0, 0.16);
+              }
+
+.card img {
+    width: 100%;   
+    height: 100%;   /* A altura da imagem será proporcional à largura */
+    object-fit: cover; /* Garante que a imagem cubra o espaço sem distorcer */
+}
+
+.card-body {
+    display: flex;
+    flex-direction: column;
+}
+
+
+.card-body p {
+    padding-top: 30px;
+}
+
+.card-img-overlay p {
+    padding-top: 20px;
+}
+
+.card-body h4{
+    padding: 5px 0 5px 0;
+}
+
+#Cancelar {
+    display: none;
+    margin-top: 20px; 
+    justify-content: flex-end; 
+    align-items: flex-end;    
+    padding-right: 10px;   
+}
+
+.card-heard {
+    padding: 16px 0 16px 10px;
+}
+
+.btn-custom {
+    width: 140px;
+    background-color: #dee2e6;
+    border-color: #bdbdbd;
+    color: black;
+}
+
+.btn-custom:hover {
+    background-color: #ced4da;
+    border-color: #a0a0a0;
+}
+
+.btn-container {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 5px;
+}
+
+.dadosCards {
+    height: 150;
+    background-color: rgba(0, 0, 1, 0.318);
+    position: absolute;
+    color: white;
+    padding: 0 20px;
+    left: 0;
+    backdrop-filter: blur(10px);
+    overflow: hidden;
+    margin-top: auto;
+    bottom: 0;
+}
+
+.navTitulo {
+    background-color: white;
+    padding: 4px 8px;
+    border-radius: 8px;
+}
+
+    </style>
+</head>
+<body>  
+<div class="container">
+    <div id="Titulo">
+        <div class="navTitulo">
+            <h1>Viagens - Escolha um destino</h1>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-4">
+            <div class="card" id="PrimeiraOpcao">
+            <img src="./novayork1.jpg">
+            <div class="card-img-overlay">
+                <div class="dadosCards">
+                <div class="card-heard">Cabeçalho Header</div>
+                <h4 class="card-title">Título card</h4>
+                <h5 class="card-subtitle">Subtítulo card</h5>
+                <p class="card-text">
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. 
+                </p>
+                <div class="btn-container">
+                    <a href="#" class="btn btn-custom" onclick="mudarImagem('PrimeiraOpcao')">Escolher</a>
+                </div>
+            </div>
+            </div>
+            </div>
+        </div>
+        <div class="col-4">
+            <div class="card" id="SegundaOpcao">
+            <img src="./suica.jpg">
+            <div class="card-img-overlay">
+                <div class="dadosCards">
+                <div class="card-heard">Cabeçalho Header</div>
+                <h4 class="card-title">Título card</h4>
+                <h5 class="card-subtitle">Subtítulo card</h5>
+                <p class="card-text">
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. 
+                </p>
+                <div class="btn-container">
+                    <a href="#" class="btn btn-custom" onclick="mudarImagem('SegundaOpcao')">Escolher</a>
+                </div>
+            </div>
+            </div>
+            </div>
+        </div>
+        <div class="col-4">
+            <div class="card" id="TerceiraOpcao">
+            <img src="./italia.avif">
+            <div class="card-img-overlay">
+                <div class="dadosCards">
+                <div class="card-heard">Cabeçalho Header</div>
+                <h4 class="card-title">Título card</h4>
+                <h5 class="card-subtitle">Subtítulo card</h5>
+                <p class="card-text">
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. 
+                </p>
+                <div class="btn-container">
+                    <a href="#" class="btn btn-custom" onclick="mudarImagem('TerceiraOpcao')">Escolher</a>
+                </div>
+            </div>
+            </div>
+            </div>
+        </div>
+    </div>
+    <div id="Cancelar">
+        <a href="#" class="btn btn-primary" onclick="cancelar('Cancelar')">Cancelar</a>
+    </div>
+</div>
+
+<script src="./bootstrap.bundle.min.js"></script>
+<script>
+ function mudarImagem(id) {
+    const elemento = document.getElementById(id);
+    const imagem = window.getComputedStyle(elemento).backgroundImage;
+    
+    // Aplica a imagem ao fundo da página
+    document.body.style.backgroundImage = imagem;
+    document.body.style.backgroundSize = 'cover'; // Garante que cubra toda a tela
+    document.body.style.backgroundPosition = 'center';
+    document.body.style.backgroundRepeat = 'no-repeat';
+
+    // Apaga um pouco os outros cards
+    document.querySelectorAll('.card').forEach(card => {
+        card.style.opacity = '0.5';
+        card.style.transform = 'scale(1)'; // Volta ao tamanho normal
+    });
+
+    // Destaca o card clicado
+    elemento.style.opacity = '1';
+    elemento.style.transform = 'scale(1.05)'; // Aumenta um pouco
+
+    document.getElementById('Cancelar').style.display = 'flex';
+}
+
+function cancelar() {
+    // Restaura o fundo da página removendo a imagem
+    document.body.style.backgroundImage = '';
+    
+    // Restaura todos os cards para o estado original
+    document.querySelectorAll('.card').forEach(card => {
+        card.style.opacity = '1';
+        card.style.transform = 'scale(1)'; // Volta ao tamanho normal
+    });
+
+    document.getElementById('Cancelar').style.display = 'none';
+}
+
+</script>
+
+
+
+</body>
+</html>
